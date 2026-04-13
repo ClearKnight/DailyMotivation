@@ -1,0 +1,33 @@
+name: DailyMotivation
+options:
+  bundleIdPrefix: com.dailymotivation
+  deploymentTarget:
+    macOS: "12.0"
+  xcodeVersion: "15.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "12.0"
+
+targets:
+  DailyMotivation:
+    type: bundle
+    platform: macOS
+    sources:
+      - Screensaver
+      - QuoteManager.swift
+      - Resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dailymotivation.screensaver
+        PRODUCT_NAME: DailyMotivation
+        WRAPPER_EXTENSION: saver
+        INFOPLIST_FILE: Screensaver/Info.plist
+        COMBINE_HIDPI_IMAGES: YES
+        INSTALL_PATH: "$(HOME)/Library/Screen Savers"
+        SKIP_INSTALL: NO
+        LD_RUNPATH_SEARCH_PATHS:
+          - "@loader_path/../Frameworks"
+    dependencies:
+      - sdk: ScreenSaver.framework
