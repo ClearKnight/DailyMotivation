@@ -72,7 +72,7 @@ final class DailyMotivationView: ScreenSaverView {
         addTextShadow(to: authorTextField)
 
         NSLayoutConstraint.activate([
-            timeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 200),
+            timeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 260),
             timeLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
 
             quoteTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
