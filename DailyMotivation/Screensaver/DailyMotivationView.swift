@@ -40,9 +40,9 @@ final class DailyMotivationView: ScreenSaverView {
         wallpaperImageView.autoresizingMask = [.width, .height]
         addSubview(wallpaperImageView)
 
-        // Time label - top center
+        // Time label - upper center
         timeLabel = NSTextField(labelWithString: "")
-        timeLabel.font = NSFont.systemFont(ofSize: 32, weight: .light)
+        timeLabel.font = NSFont.systemFont(ofSize: 48, weight: .light)
         timeLabel.textColor = .white
         timeLabel.alignment = .center
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ final class DailyMotivationView: ScreenSaverView {
 
         // Quote text - center
         quoteTextField = NSTextField(labelWithString: "")
-        quoteTextField.font = NSFont.systemFont(ofSize: 42, weight: .medium)
+        quoteTextField.font = NSFont.systemFont(ofSize: 48, weight: .medium)
         quoteTextField.textColor = .white
         quoteTextField.alignment = .center
         quoteTextField.lineBreakMode = .byWordWrapping
@@ -72,11 +72,11 @@ final class DailyMotivationView: ScreenSaverView {
         addTextShadow(to: authorTextField)
 
         NSLayoutConstraint.activate([
-            timeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 80),
+            timeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 200),
             timeLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
 
             quoteTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
-            quoteTextField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20),
+            quoteTextField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 120),
             quoteTextField.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 60),
             quoteTextField.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -60),
 
