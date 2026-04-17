@@ -34,6 +34,20 @@ final class DailyMotivationView: ScreenSaverView {
     private func setupViews() {
         wantsLayer = true
 
+        // 根据视图尺寸判断是否为预览模式
+        let isSmallView = bounds.width < 300
+
+        // 字体大小适配
+        let timeFontSize: CGFloat = isSmallView ? 14 : 48
+        let quoteFontSize: CGFloat = isSmallView ? 12 : 48
+        let authorFontSize: CGFloat = isSmallView ? 8 : 20
+
+        // 布局间距适配
+        let timeTopConstant: CGFloat = isSmallView ? 20 : 260
+        let quoteCenterYConstant: CGFloat = isSmallView ? 30 : 120
+        let authorTopConstant: CGFloat = isSmallView ? 8 : 20
+        let horizontalPadding: CGFloat = isSmallView ? 10 : 60
+
         // 背景图片层
         wallpaperImageView = NSImageView(frame: bounds)
         wallpaperImageView.imageScaling = .scaleAxesIndependently
@@ -42,7 +56,7 @@ final class DailyMotivationView: ScreenSaverView {
 
         // Time label - upper center
         timeLabel = NSTextField(labelWithString: "")
-        timeLabel.font = NSFont.systemFont(ofSize: 48, weight: .light)
+        timeLabel.font = NSFont.systemFont(ofSize: timeFontSize, weight: .light)
         timeLabel.textColor = .white
         timeLabel.alignment = .center
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +64,7 @@ final class DailyMotivationView: ScreenSaverView {
 
         // Quote text - center
         quoteTextField = NSTextField(labelWithString: "")
-        quoteTextField.font = NSFont.systemFont(ofSize: 48, weight: .medium)
+        quoteTextField.font = NSFont.systemFont(ofSize: quoteFontSize, weight: .medium)
         quoteTextField.textColor = .white
         quoteTextField.alignment = .center
         quoteTextField.lineBreakMode = .byWordWrapping
@@ -60,7 +74,7 @@ final class DailyMotivationView: ScreenSaverView {
 
         // Author text - below quote
         authorTextField = NSTextField(labelWithString: "")
-        authorTextField.font = NSFont.systemFont(ofSize: 20, weight: .regular)
+        authorTextField.font = NSFont.systemFont(ofSize: authorFontSize, weight: .regular)
         authorTextField.textColor = NSColor.white.withAlphaComponent(0.7)
         authorTextField.alignment = .center
         authorTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -72,15 +86,15 @@ final class DailyMotivationView: ScreenSaverView {
         addTextShadow(to: authorTextField)
 
         NSLayoutConstraint.activate([
-            timeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 260),
+            timeLabel.topAnchor.constraint(equalTo: topAnchor, constant: timeTopConstant),
             timeLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
 
             quoteTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
-            quoteTextField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 120),
-            quoteTextField.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 60),
-            quoteTextField.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -60),
+            quoteTextField.centerYAnchor.constraint(equalTo: centerYAnchor, constant: quoteCenterYConstant),
+            quoteTextField.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: horizontalPadding),
+            quoteTextField.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -horizontalPadding),
 
-            authorTextField.topAnchor.constraint(equalTo: quoteTextField.bottomAnchor, constant: 20),
+            authorTextField.topAnchor.constraint(equalTo: quoteTextField.bottomAnchor, constant: authorTopConstant),
             authorTextField.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
 
